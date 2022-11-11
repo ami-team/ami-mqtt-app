@@ -1,7 +1,5 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import {createPinia} from 'pinia';
-
 import mqttClient from './plugins/mqttClient';
 import toast      from './plugins/toast'     ;
 
@@ -9,7 +7,6 @@ import toast      from './plugins/toast'     ;
 
 export function setupApp(app)
 {
-    app.use(createPinia());
     app.use(mqttClient);
     app.use(toast);
 }
