@@ -1,0 +1,29 @@
+{
+  "name": "ami-mqtt-app",
+  "version": "1.0.0",
+  "description": "Utilities for developing AMI MQTT-based applications",
+  "main": "./src/index.js",
+  "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js ./src/"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.2.0",
+    "ami-mqtt-client": "github:ami-team/AMIMQTTClientJS",
+    "bootstrap": "^5.2.1",
+    "bootstrap-icons": "^1.9.1",
+    "pinia": "^2.0.23",
+    "uuid": "^9.0.0",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "eslint": "^8.24.0",
+    "eslint-plugin-vue": "^9.5.1"
+  },
+  "author": "Jérôme Odier",
+  "license": "CeCILL",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.in2p3.fr/ami-team/ami-mqtt-app/"
+  }
+}
