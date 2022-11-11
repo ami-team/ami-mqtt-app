@@ -4,7 +4,7 @@
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import {storeToRefs} from 'pinia/dist/pinia';
+import {storeToRefs} from 'pinia';
 
 import {useToastStore} from '../stores/toast';
 
