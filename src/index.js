@@ -2,8 +2,8 @@
 
 import {createPinia} from 'pinia';
 
-import mqttClient from 'plugins/mqttClient';
-import toast      from 'plugins/toast'     ;
+import mqttClient from './plugins/mqttClient';
+import toast      from './plugins/toast'     ;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
