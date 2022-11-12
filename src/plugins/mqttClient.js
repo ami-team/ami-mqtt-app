@@ -56,14 +56,14 @@ class MQTTClient
             console.log(document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6'));
             console.log(this.getJWTToken());
             console.log(document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D'));
-            console.log(this.getMQTTEndpoint());
+            console.log(this.getMQTTBrokerEndpoint());
             console.log(document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6'));
             console.log(this.getAMIPipelineEndpoint());
 
             console.log('3<');
 
             document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value = this.getJWTToken();
-            document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value = this.getMQTTEndpoint();
+            document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value = this.getMQTTBrokerEndpoint();
             document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6').value = this.getAMIPipelineEndpoint();
 
             this.#resolve = resolve;
