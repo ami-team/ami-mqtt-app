@@ -104,11 +104,11 @@ class MQTTClient
                 }
                 else
                 {
-                    reject('internal error');
+                    reject('internal error 1');
                 }
             }).catch(() => {
 
-                reject('internal error');
+                reject('internal error 2');
             });
         });
 
