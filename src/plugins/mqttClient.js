@@ -3,11 +3,9 @@
 
 import AMIMQTTClient from 'ami-mqtt-client';
 
+import {isInAMI, getAMIAuth} from '../utilities/AMI';
+
 import SignInModal from '../components/SignInModal.vue';
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-
-const _amiAuth = window.amiAuth;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -34,13 +32,13 @@ class MQTTClient
 
                 e.preventDefault();
 
-                const mqttToken = document.getElementById('mqttTokenInput').value;
-                const mqttBrokerEndpoint = document.getElementById('mqttBrokerEndpointInput').value;
-                const amiPipelineEndpoint = document.getElementById('amiPipelineEndpointInput').value;
+                const jwtToken = document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value;
+                const mqttBrokerEndpoint = document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value;
+                const amiPipelineEndpoint = document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6').value;
 
-                if(mqttToken && mqttBrokerEndpoint)
+                if(jwtToken && mqttBrokerEndpoint)
                 {
-                    this.#resolve([mqttToken, mqttBrokerEndpoint, amiPipelineEndpoint]);
+                    this.#resolve([jwtToken, mqttBrokerEndpoint, amiPipelineEndpoint]);
 
                     this.#modal.hide();
                 }
@@ -51,9 +49,9 @@ class MQTTClient
 
         return new Promise((resolve) => {
 
-            document.getElementById('mqttTokenInput').value = this.getMQTTToken();
-            document.getElementById('mqttBrokerEndpointInput').value = this.getMQTTEndpoint();
-            document.getElementById('amiPipelineEndpointInput').value = this.getAMIPipelineEndpoint();
+            document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value = this.getJWTToken();
+            document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value = this.getMQTTEndpoint();
+            document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6').value = this.getAMIPipelineEndpoint();
 
             this.#resolve = resolve;
 
@@ -69,21 +67,23 @@ class MQTTClient
     {
         /*------------------------------------------------------------------------------------------------------------*/
 
-        if(typeof(_amiAuth) === 'undefined')
+        if(isInAMI())
         {
-            if(this.getMQTTToken() && this.getMQTTEndpoint())
+            const amiAuth = getAMIAuth()
+
+            if(amiAuth.getMqttToken() && amiAuth.getMqttBrokerEndpoint())
             {
+                localStorage.setItem('jwtToken', amiAuth.getMqttToken());
+                localStorage.setItem('mqttBrokerEndpoint', amiAuth.getMqttBrokerEndpoint());
+                localStorage.setItem('amiPipelineEndpoint', amiAuth.getAMIPipelineEndpoint());
+
                 return Promise.resolve();
             }
         }
         else
         {
-            if(_amiAuth.getMqttToken() && _amiAuth.getMqttBrokerEndpoint())
+            if(this.getJWTToken() && this.getMQTTEndpoint())
             {
-                localStorage.setItem('mqttToken', _amiAuth.getMqttToken());
-                localStorage.setItem('mqttBrokerEndpoint', _amiAuth.getMqttBrokerEndpoint());
-                localStorage.setItem('amiPipelineEndpoint', _amiAuth.getAMIPipelineEndpoint());
-
                 return Promise.resolve();
             }
         }
@@ -92,11 +92,11 @@ class MQTTClient
 
         return new Promise((resolve, reject) => {
 
-            this.#updateTokenByModal().then(([mqttToken, mqttBrokerEndpoint, amiPipelineEndpoint]) => {
+            this.#updateTokenByModal().then(([jwtToken, mqttBrokerEndpoint, amiPipelineEndpoint]) => {
 
-                if(mqttToken && mqttBrokerEndpoint)
+                if(jwtToken && mqttBrokerEndpoint)
                 {
-                    localStorage.setItem('mqttToken', (mqttToken || '').toString());
+                    localStorage.setItem('jwtToken', (jwtToken || '').toString());
                     localStorage.setItem('mqttBrokerEndpoint', (mqttBrokerEndpoint || '').toString());
                     localStorage.setItem('amiPipelineEndpoint', (amiPipelineEndpoint || '').toString());
 
@@ -155,7 +155,7 @@ class MQTTClient
                 }
                 else
                 {
-                    this.#client.signInByToken(this.getMQTTToken()).then(() => {
+                    this.#client.signInByToken(this.getJWTToken()).then(() => {
 
                         resolve(this.#client);
 
@@ -185,7 +185,7 @@ class MQTTClient
 
     reconnect()
     {
-        localStorage.setItem('mqttToken', '');
+        localStorage.setItem('jwtToken', '');
 
         if(this.#client)
         {
@@ -208,9 +208,9 @@ class MQTTClient
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    getMQTTToken()
+    getJWTToken()
     {
-        return localStorage.getItem('mqttToken') || '';
+        return localStorage.getItem('jwtToken') || '';
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
