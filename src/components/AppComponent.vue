@@ -25,7 +25,7 @@ const height = `calc(100vh - ${isInAMI() ? 12.25 : 0.0}rem)`;
 
 <template>
     <div class="d-flex">
-        <div class="d-flex flex-column" :style="{'width': '4.5rem', 'height': height}">
+        <div class="d-flex flex-column" :style="{'height': height, 'width': '4.5rem'}">
 
             <ul class="nav nav-pills nav-flush flex-grow-1 flex-column justify-content-start text-center bg-light">
 
@@ -43,7 +43,7 @@ const height = `calc(100vh - ${isInAMI() ? 12.25 : 0.0}rem)`;
             </ul>
 
         </div>
-        <div :style="{'width': 'calc(100% - 4.5rem)', 'height': height, 'overflow-x': 'hidden', 'overflow-y': 'scroll'}">
+        <div :style="{'height': height, 'width': 'calc(100% - 4.5rem)', 'overflow-x': 'hidden', 'overflow-y': 'scroll'}">
 
             <router-view :key="$route.path" />
 
