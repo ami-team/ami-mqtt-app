@@ -28,8 +28,6 @@ class MQTTClient
         {
             this.#modal = new window.bootstrap.Modal(document.getElementById('C2BE0D9F_9779_84D1_EA11_023EBF2CA62F'));
 
-            alert(this.#modal);
-
             document.getElementById('DA646FB8_5E07_5DE0_1BE4_74A7893F8858').addEventListener('submit', (e) => {
 
                 e.preventDefault();
@@ -56,6 +54,8 @@ class MQTTClient
             document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6').value = this.getAMIPipelineEndpoint();
 
             this.#resolve = resolve;
+
+            alert(this.#modal.show);
 
             this.#modal.show();
         });
