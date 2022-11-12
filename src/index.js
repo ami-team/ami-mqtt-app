@@ -1,14 +1,17 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+import App from './components/App';
+import ButtonModal from './components/ButtonModal';
+
+import toast from './plugins/toast';
 import mqttClient from './plugins/mqttClient';
-import toast      from './plugins/toast'     ;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 export function setupApp(app)
 {
-    app.use(mqttClient);
     app.use(toast);
+    app.use(mqttClient);
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -37,6 +40,20 @@ export function runApp(app, mountPoint)
             app.mount(mountPoint);
         };
     }
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+export function getAppComponent()
+{
+    return App;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+export function getButtonModalComponent()
+{
+    return ButtonModal;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
