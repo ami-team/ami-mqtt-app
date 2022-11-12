@@ -1,8 +1,6 @@
 // noinspection JSUnresolvedFunction, JSUnresolvedVariable,JSUnusedGlobalSymbols
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import {inject} from 'vue';
-
 import AMIMQTTClient from 'ami-mqtt-client';
 
 import {isInAMI, getAMIAuth} from '../utilities/AMI';
@@ -19,10 +17,6 @@ class MQTTClient
     #client = null;
 
     #resolve = () => {};
-
-    /*--------------------------------------------------------------------------------------------------------------------*/
-
-    #newToast = inject('toast');
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
@@ -170,8 +164,6 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        this.#newToast('error', e);
-
                         reject(e);
                     });
                 }
@@ -179,8 +171,6 @@ class MQTTClient
                 /*------------------------------------------------------------------------------------------------*/
 
             }).catch((e) => {
-
-                this.#newToast('error', e);
 
                 reject(e);
             });
@@ -200,17 +190,34 @@ class MQTTClient
     {
         localStorage.setItem('jwtToken', '');
 
-        if(this.#client)
-        {
-            this.#client.signOut().finally(() => {
+        return new Promise((resolve, reject) => {
 
-                return this.#connect(false);
-            });
-        }
-        else
-        {
-            return this.#connect(false);
-        }
+            if(this.#client)
+            {
+                this.#client.signOut().finally(() => {
+
+                    this.#connect(false).then(() => {
+
+                        resolve();
+
+                    }).catch((e) => {
+
+                        reject(e);
+                    })
+                });
+            }
+            else
+            {
+                this.#connect(false).then(() => {
+
+                    resolve();
+
+                }).catch((e) => {
+
+                    reject(e);
+                })
+            }
+        });
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
