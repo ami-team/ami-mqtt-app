@@ -165,7 +165,7 @@ class MQTTClient
 
                         setTimeout(() => {
 
-                            retry(resolve, reject);
+                            alert('ffff')
 
                         }, 10);
                     });
