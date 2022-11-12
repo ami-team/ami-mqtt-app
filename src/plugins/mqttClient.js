@@ -23,7 +23,7 @@ class MQTTClient
     #updateTokenByModal()
     {
         /*------------------------------------------------------------------------------------------------------------*/
-
+        console.log('1');
         if(!this.#modal)
         {
             this.#modal = new window.bootstrap.Modal(document.getElementById('C2BE0D9F_9779_84D1_EA11_023EBF2CA62F'));
@@ -43,11 +43,15 @@ class MQTTClient
                     this.#modal.hide();
                 }
             });
+
+            console.log('2');
         }
 
         /*------------------------------------------------------------------------------------------------------------*/
 
         return new Promise((resolve) => {
+
+            console.log('3');
 
             document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value = this.getJWTToken();
             document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value = this.getMQTTEndpoint();
@@ -55,11 +59,12 @@ class MQTTClient
 
             this.#resolve = resolve;
 
-            alert('1');
+            console.log('4');
             console.log(this.#modal);
-            alert('2');
+            console.log('5');
 
             this.#modal.show();
+            console.log('6');
         });
 
         /*------------------------------------------------------------------------------------------------------------*/
