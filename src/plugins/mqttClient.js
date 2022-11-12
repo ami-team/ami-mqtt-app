@@ -161,7 +161,7 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        reject(e);
+                        this.reconnect();
                     });
                 }
 
