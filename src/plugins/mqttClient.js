@@ -159,7 +159,7 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                    }).catch((e) => {
+                    }).catch(() => {
 
                         this.#connect(false);
                     })
