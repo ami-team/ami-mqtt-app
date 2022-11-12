@@ -121,9 +121,9 @@ class MQTTClient
     {
         return new Promise((resolve) => {
 
-            let ok = false;
+            let connected = false;
 
-            while(ok)
+            while(!connected)
             {
                 this.#getConfig().then(() => {
 
@@ -157,7 +157,7 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                        ok = true;
+                        connected = true;
                     }
                     else
                     {
@@ -165,7 +165,7 @@ class MQTTClient
 
                             resolve(this.#client);
 
-                            ok = true;
+                            connected = true;
                         });
                     }
 
