@@ -164,7 +164,14 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        reject(e);
+                        this.#connect(updateListeners, onConnected, onMessageArrived, onConnectionLost).then((client) => {
+
+                            resolve(client);
+
+                        }).catch((e) => {
+
+                            reject(e);
+                        });
                     });
                 }
 
