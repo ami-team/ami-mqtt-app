@@ -38,7 +38,7 @@
                     <div class="modal-footer">
 
                         <button class="btn btn-primary" type="submit" form="DA646FB8_5E07_5DE0_1BE4_74A7893F8858">
-                            <i class="bi bi-plugin"></i> Connect
+                            <i class="bi bi-check-lg"></i> Connect
                         </button>
 
                     </div>
