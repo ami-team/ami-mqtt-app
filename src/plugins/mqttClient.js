@@ -32,7 +32,7 @@ class MQTTClient
 
                 e.preventDefault();
 
-                const jwtToken = document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value;
+                const jwtToken          = document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value;
                 const mqttBrokerEndpoint = document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value;
                 const amiPipelineEndpoint = document.getElementById('F1742259_DFDE_DC08_127F_E4F9B809F4C6').value;
 
@@ -96,7 +96,7 @@ class MQTTClient
 
                 if(jwtToken && mqttBrokerEndpoint)
                 {
-                    localStorage.setItem('jwtToken', (jwtToken || '').toString());
+                    localStorage.setItem('jwtToken'         , (jwtToken           || '').toString());
                     localStorage.setItem('mqttBrokerEndpoint', (mqttBrokerEndpoint || '').toString());
                     localStorage.setItem('amiPipelineEndpoint', (amiPipelineEndpoint || '').toString());
 
@@ -137,7 +137,7 @@ class MQTTClient
 
                 if(updateListeners)
                 {
-                    this.#client.setOnConnected(onConnected || (() => {}));
+                    this.#client.setOnConnected/*-*/(onConnected/*-*/ || (() => {}));
                     this.#client.setOnMessageArrived(onMessageArrived || (() => {}));
                     this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
                 }
@@ -161,9 +161,11 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        console.log('-> ' + e);
+                        console.log('1-> ' + e);
 
                         this.reconnect();
+
+                        console.log('2-> ' + e);
                     });
                 }
 
