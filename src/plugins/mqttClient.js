@@ -163,7 +163,11 @@ class MQTTClient
 
                         localStorage.setItem('jwtToken', '');
 
-                        retry(resolve, reject);
+                        setTimeout(() => {
+
+                            retry(resolve, reject);
+
+                        }, 10);
                     });
                 }
 
