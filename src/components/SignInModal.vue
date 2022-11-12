@@ -24,7 +24,7 @@
                                 <input class="form-control" type="text" placeholder="Token..." id="mqttTokenInput" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" required />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="mqttBrokerEndpointInput">Broker URL<sup class="text-danger">*</sup></label>
+                                <label class="form-label" for="mqttBrokerEndpointInput">MQTT Broker URL<sup class="text-danger">*</sup></label>
                                 <input class="form-control" type="text" placeholder="Endpoint..." id="mqttBrokerEndpointInput" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" required />
                             </div>
                             <div class="mb-3">
