@@ -95,7 +95,7 @@ class MQTTClient
         }
         else
         {
-            if(this.getJWTToken() && this.getMQTTEndpoint())
+            if(this.getJWTToken() && this.getMQTTBrokerEndpoint())
             {
                 return Promise.resolve();
             }
@@ -138,9 +138,9 @@ class MQTTClient
 
                 /*------------------------------------------------------------------------------------------------*/
 
-                if(!this.#client || this.#client.getEndpoint() !== this.getMQTTEndpoint())
+                if(!this.#client || this.#client.getEndpoint() !== this.getMQTTBrokerEndpoint())
                 {
-                    this.#client = new AMIMQTTClient(this.getMQTTEndpoint(), {
+                    this.#client = new AMIMQTTClient(this.getMQTTBrokerEndpoint(), {
                         discoveryTopic: 'ami/taskserver/ping',
                         triggerDiscoveryTopic: 'ami/taskserver/pings',
                     });
