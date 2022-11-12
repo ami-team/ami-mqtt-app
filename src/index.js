@@ -1,14 +1,18 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import App from './components/App';
+import AppComponent from './components/AppComponent';
+
 import ButtonModal from './components/ButtonModal';
 
+/*--------------------------------------------------------------------------------------------------------------------*/
+
 import toast from './plugins/toast';
+
 import mqttClient from './plugins/mqttClient';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-export function setupApp(app)
+function setupApp(app)
 {
     app.use(toast);
     app.use(mqttClient);
@@ -16,7 +20,7 @@ export function setupApp(app)
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-export function runApp(app, mountPoint)
+function runApp(app, mountPoint)
 {
     if(typeof(window.amiWebApp) === 'undefined')
     {
@@ -44,9 +48,6 @@ export function runApp(app, mountPoint)
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-//export {
-//    App as App,
-//    ButtonModal as ButtonModal,
-//};
+export {setupApp, runApp, AppComponent, ButtonModal};
 
 /*--------------------------------------------------------------------------------------------------------------------*/
