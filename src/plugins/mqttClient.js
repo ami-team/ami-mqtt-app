@@ -196,6 +196,10 @@ class MQTTClient
                 this.#connect(false, null, null, null).then(() => {
 
                     console.log('🔌 reconnected');
+
+                }).catch((e) => {
+
+                    console.log(e);
                 });
             });
         }
@@ -204,6 +208,10 @@ class MQTTClient
             this.#connect(false, null, null, null).then(() => {
 
                 console.log('🔌 reconnected');
+
+            }).catch((e) => {
+
+                console.log(e);
             });
         }
     }
