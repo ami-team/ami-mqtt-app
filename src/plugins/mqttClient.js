@@ -55,7 +55,7 @@ class MQTTClient
 
             this.#resolve = resolve;
 
-            alert(this.#modal.show);
+            console.log(this.#modal);
 
             this.#modal.show();
         });
