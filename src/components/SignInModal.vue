@@ -28,8 +28,8 @@
                                 <input class="form-control" type="text" placeholder="Endpoint..." id="D7CF85AE_D095_B7E6_1018_3BD727935E4D" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" required />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="F1742259_DFDE_DC08_127F_E4F9B809F4C6">AMI-Pipeline URL<sup class="text-muted">opt</sup></label>
-                                <input class="form-control" type="text" placeholder="Endpoint..." id="F1742259_DFDE_DC08_127F_E4F9B809F4C6" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" optional />
+                                <label class="form-label" for="F1742259_7FDE_DC08_127F_E4F9B809F4C6">AMI-Pipeline URL<sup class="text-muted">opt</sup></label>
+                                <input class="form-control" type="text" placeholder="Endpoint..." id="F1742259_7FDE_DC08_127F_E4F9B809F4C6" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" optional />
                             </div>
 
                         </form>
