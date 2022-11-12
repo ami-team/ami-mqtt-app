@@ -161,6 +161,8 @@ class MQTTClient
 
                     }).catch((e) => {
 
+                        console.log('-> ' + e);
+
                         this.reconnect();
                     });
                 }
