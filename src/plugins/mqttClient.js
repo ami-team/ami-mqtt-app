@@ -119,63 +119,60 @@ class MQTTClient
 
     #connect(updateListeners, onConnected, onMessageArrived, onConnectionLost)
     {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
 
-            let connected = false;
+            this.#getConfig().then(() => {
 
-            while(!connected)
-            {
-                this.#getConfig().then(() => {
+                /*------------------------------------------------------------------------------------------------*/
 
-                    /*------------------------------------------------------------------------------------------------*/
+                if(!this.#client || this.#client.getEndpoint() !== this.getMQTTEndpoint())
+                {
+                    this.#client = new AMIMQTTClient(this.getMQTTEndpoint(), {
+                        discoveryTopic: 'ami/taskserver/ping',
+                        triggerDiscoveryTopic: 'ami/taskserver/pings',
+                    });
+                }
 
-                    if(!this.#client || this.#client.getEndpoint() !== this.getMQTTEndpoint())
+                /*------------------------------------------------------------------------------------------------*/
+
+                if(updateListeners)
+                {
+                    this.#client.setOnConnected/*-*/(onConnected/*-*/ || (() => {}));
+                    this.#client.setOnMessageArrived(onMessageArrived || (() => {}));
+                    this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
+                }
+
+                /*------------------------------------------------------------------------------------------------*/
+
+                if(this.#client.isConnected())
+                {
+                    if(onConnected)
                     {
-                        this.#client = new AMIMQTTClient(this.getMQTTEndpoint(), {
-                            discoveryTopic: 'ami/taskserver/ping',
-                            triggerDiscoveryTopic: 'ami/taskserver/pings',
-                        });
+                        onConnected(this.#client);
                     }
 
-                    /*----------------------------------------------------------------------------------------------------*/
+                    resolve(this.#client);
 
-                    if(updateListeners)
-                    {
-                        this.#client.setOnConnected/*-*/(onConnected/*-*/ || (() => {}));
-                        this.#client.setOnMessageArrived(onMessageArrived || (() => {}));
-                        this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
-                    }
-
-                    /*------------------------------------------------------------------------------------------------*/
-
-                    if(this.#client.isConnected())
-                    {
-                        if(onConnected)
-                        {
-                            onConnected(this.#client);
-                        }
+                    connected = true;
+                }
+                else
+                {
+                    this.#client.signInByToken(this.getJWTToken()).then(() => {
 
                         resolve(this.#client);
 
-                        connected = true;
-                    }
-                    else
-                    {
-                        this.#client.signInByToken(this.getJWTToken()).then(() => {
+                    }).catch((e) => {
 
-                            resolve(this.#client);
+                        reject(e);
+                    })
+                }
 
-                            connected = true;
-                        });
-                    }
+                /*------------------------------------------------------------------------------------------------*/
 
-                    /*------------------------------------------------------------------------------------------------*/
+            }).catch((e) => {
 
-                }).catch((e) => {
-
-                    console.log(e);
-                });
-            }
+                reject(e);
+            });
         });
     }
 
@@ -220,7 +217,7 @@ class MQTTClient
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    getMQTTEndpoint()
+    getMQTTBrokerEndpoint()
     {
         return localStorage.getItem('mqttBrokerEndpoint') || '';
     }
