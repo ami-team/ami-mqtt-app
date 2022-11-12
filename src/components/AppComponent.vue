@@ -7,7 +7,7 @@
 
 import {inject} from 'vue';
 
-import {isInAMI} from '../utilities/AMI';
+import {isInAMI} from '@/utilities/AMI';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 

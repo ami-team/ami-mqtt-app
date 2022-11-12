@@ -3,7 +3,7 @@
 
 import AMIMQTTClient from 'ami-mqtt-client';
 
-import SignInModal from '../components/SignInModal.vue';
+import SignInModal from '@/components/SignInModal.vue';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
