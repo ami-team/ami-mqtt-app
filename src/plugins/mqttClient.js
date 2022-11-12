@@ -164,9 +164,7 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        console.log('ouinnnnnn');
-
-                        reject(e);
+                        this.reconnect();
                     });
                 }
 
