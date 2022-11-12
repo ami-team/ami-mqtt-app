@@ -1,11 +1,17 @@
 // noinspection JSUnresolvedFunction, JSUnresolvedVariable,JSUnusedGlobalSymbols
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+import {inject} from 'vue';
+
 import AMIMQTTClient from 'ami-mqtt-client';
 
 import {isInAMI, getAMIAuth} from '../utilities/AMI';
 
 import SignInModal from '../components/SignInModal.vue';
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const newToast = inject('toast');
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -158,9 +164,13 @@ class MQTTClient
                 {
                     this.#client.signInByToken(this.getJWTToken()).then(() => {
 
+                        console.log('🔌 reconnected');
+
                         resolve(this.#client);
 
                     }).catch((e) => {
+
+                        newToast('error', e);
 
                         reject(e);
                     });
@@ -169,6 +179,8 @@ class MQTTClient
                 /*------------------------------------------------------------------------------------------------*/
 
             }).catch((e) => {
+
+                newToast('error', e);
 
                 reject(e);
             });
@@ -192,26 +204,12 @@ class MQTTClient
         {
             this.#client.signOut().finally(() => {
 
-                return this.#connect(false).then(() => {
-
-                    console.log('🔌 reconnected');
-
-                }).catch((e) => {
-
-                    console.log(e);
-                });
+                return this.#connect(false);
             });
         }
         else
         {
-            return this.#connect(false).then(() => {
-
-                console.log('🔌 reconnected');
-
-            }).catch((e) => {
-
-                console.log(e);
-            });
+            return this.#connect(false);
         }
     }
 
