@@ -120,7 +120,7 @@ class MQTTClient
 
     #connect(updateListeners, onConnected = null, onMessageArrived = null, onConnectionLost = null)
     {
-        return new Promise((resolve, reject) => {
+        const retry = (resolve, reject) => {
 
             this.#getConfig().then(() => {
 
@@ -159,9 +159,11 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                    }).catch((e) => {
+                    }).catch(() => {
 
-                        reject(e);
+                        localStorage.setItem('jwtToken', '');
+
+                        retry(resolve, reject);
                     });
                 }
 
@@ -171,6 +173,11 @@ class MQTTClient
 
                 reject(e);
             });
+        }
+
+        return new Promise((resolve, reject) => {
+
+            retry(resolve, reject);
         });
     }
 
