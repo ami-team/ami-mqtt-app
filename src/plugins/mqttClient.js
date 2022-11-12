@@ -158,7 +158,7 @@ class MQTTClient
                 {
                     this.#client.signInByToken(this.getJWTToken()).then(() => {
 
-                        console.log('🔌 reconnected');
+                        console.log('🔌 connected');
 
                         resolve(this.#client);
 
