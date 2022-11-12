@@ -119,62 +119,61 @@ class MQTTClient
 
     #connect(updateListeners, onConnected, onMessageArrived, onConnectionLost)
     {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
-            this.#getConfig().then(() => {
+            for(;;)
+            {
+                this.#getConfig().then(() => {
 
-                /*----------------------------------------------------------------------------------------------------*/
+                    /*------------------------------------------------------------------------------------------------*/
 
-                if(!this.#client || this.#client.getEndpoint() !== this.getMQTTEndpoint())
-                {
-                    this.#client = new AMIMQTTClient(this.getMQTTEndpoint(), {
-                        discoveryTopic: 'ami/taskserver/ping',
-                        triggerDiscoveryTopic: 'ami/taskserver/pings',
-                    });
-                }
-
-                /*----------------------------------------------------------------------------------------------------*/
-
-                if(updateListeners)
-                {
-                    this.#client.setOnConnected/*-*/(onConnected/*-*/ || (() => {}));
-                    this.#client.setOnMessageArrived(onMessageArrived || (() => {}));
-                    this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
-                }
-
-                /*----------------------------------------------------------------------------------------------------*/
-
-                if(this.#client.isConnected())
-                {
-                    if(onConnected)
+                    if(!this.#client || this.#client.getEndpoint() !== this.getMQTTEndpoint())
                     {
-                        onConnected(this.#client);
-
-                        resolve(this.#client);
+                        this.#client = new AMIMQTTClient(this.getMQTTEndpoint(), {
+                            discoveryTopic: 'ami/taskserver/ping',
+                            triggerDiscoveryTopic: 'ami/taskserver/pings',
+                        });
                     }
-                }
-                else
-                {
-                    this.#client.signInByToken(this.getJWTToken()).then(() => {
+
+                    /*----------------------------------------------------------------------------------------------------*/
+
+                    if(updateListeners)
+                    {
+                        this.#client.setOnConnected/*-*/(onConnected/*-*/ || (() => {}));
+                        this.#client.setOnMessageArrived(onMessageArrived || (() => {}));
+                        this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
+                    }
+
+                    /*------------------------------------------------------------------------------------------------*/
+
+                    if(this.#client.isConnected())
+                    {
+                        if(onConnected)
+                        {
+                            onConnected(this.#client);
+                        }
 
                         resolve(this.#client);
 
-                    }).catch((e) => {
+                        break;
+                    }
+                    else
+                    {
+                        this.#client.signInByToken(this.getJWTToken()).then(() => {
 
-                        console.log('1-> ' + e);
+                            resolve(this.#client);
 
-                        this.reconnect();
+                            break;
+                        });
+                    }
 
-                        console.log('2-> ' + e);
-                    });
-                }
+                    /*------------------------------------------------------------------------------------------------*/
 
-                /*----------------------------------------------------------------------------------------------------*/
+                }).catch((e) => {
 
-            }).catch((e) => {
-
-                reject(e);
-            })
+                    console.log(e);
+                });
+            }
         });
     }
 
@@ -195,7 +194,7 @@ class MQTTClient
         {
             this.#client.signOut().finally(() => {
 
-                this.#connect(false, null, null, null).finally(() => {
+                this.#connect(false, null, null, null).then(() => {
 
                     console.log('🔌 reconnected');
                 });
@@ -203,7 +202,7 @@ class MQTTClient
         }
         else
         {
-            this.#connect(false, null, null, null).finally(() => {
+            this.#connect(false, null, null, null).then(() => {
 
                 console.log('🔌 reconnected');
             });
