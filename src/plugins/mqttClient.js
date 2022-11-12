@@ -23,7 +23,7 @@ class MQTTClient
     #updateTokenByModal()
     {
         /*------------------------------------------------------------------------------------------------------------*/
-        console.log('1');
+
         if(!this.#modal)
         {
             this.#modal = new window.bootstrap.Modal(document.getElementById('C2BE0D9F_9779_84D1_EA11_023EBF2CA62F'));
@@ -43,24 +43,11 @@ class MQTTClient
                     this.#modal.hide();
                 }
             });
-
-            console.log('2');
         }
 
         /*------------------------------------------------------------------------------------------------------------*/
 
         return new Promise((resolve) => {
-
-            console.log('3>');
-
-            console.log(document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6'));
-            console.log(this.getJWTToken());
-            console.log(document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D'));
-            console.log(this.getMQTTBrokerEndpoint());
-            console.log(document.getElementById('F1742259_7FDE_DC08_127F_E4F9B809F4C6'));
-            console.log(this.getAMIPipelineEndpoint());
-
-            console.log('3<');
 
             document.getElementById('C003DCF9_6336_8943_221F_9F1FD7451CF6').value = this.getJWTToken();
             document.getElementById('D7CF85AE_D095_B7E6_1018_3BD727935E4D').value = this.getMQTTBrokerEndpoint();
