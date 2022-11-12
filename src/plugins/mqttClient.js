@@ -106,6 +106,7 @@ class MQTTClient
                 {
                     reject('internal error 1');
                 }
+
             }).catch(() => {
 
                 reject('internal error 2');
@@ -191,7 +192,7 @@ class MQTTClient
         {
             this.#client.signOut().finally(() => {
 
-                this.#connect(false).then(() => {
+                return this.#connect(false).then(() => {
 
                     console.log('🔌 reconnected');
 
@@ -203,7 +204,7 @@ class MQTTClient
         }
         else
         {
-            this.#connect(false, null, null, null).then(() => {
+            return this.#connect(false).then(() => {
 
                 console.log('🔌 reconnected');
 
