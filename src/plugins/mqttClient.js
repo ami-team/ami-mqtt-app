@@ -121,7 +121,9 @@ class MQTTClient
     {
         return new Promise((resolve) => {
 
-            for(;;)
+            let ok = false;
+
+            while(ok)
             {
                 this.#getConfig().then(() => {
 
@@ -155,7 +157,7 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                        break;
+                        ok = true;
                     }
                     else
                     {
@@ -163,7 +165,7 @@ class MQTTClient
 
                             resolve(this.#client);
 
-                            break;
+                            ok = true;
                         });
                     }
 
