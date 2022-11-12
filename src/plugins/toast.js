@@ -5,9 +5,9 @@ import {v4 as uuidV4} from 'uuid';
 
 import {requestPermission, isPermissionGranted, sendNotification} from '@tauri-apps/api/notification';
 
-import ToastContainer from '@/components/ToastContainer.vue';
+import ToastContainer from '../components/ToastContainer.vue';
 
-import {useToastStore} from '@/stores/toast';
+import {useToastStore} from '../stores/toast';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
