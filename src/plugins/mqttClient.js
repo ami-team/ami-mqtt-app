@@ -164,14 +164,9 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        this.#connect(updateListeners, onConnected, onMessageArrived, onConnectionLost).then((client) => {
+                        console.log('ouinnnnnn');
 
-                            resolve(client);
-
-                        }).catch((e) => {
-
-                            reject(e);
-                        });
+                        reject(e);
                     });
                 }
 
