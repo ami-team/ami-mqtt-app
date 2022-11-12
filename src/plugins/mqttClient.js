@@ -161,6 +161,8 @@ class MQTTClient
 
                     }).catch(() => {
 
+                        console.log('retry')
+
                         this.#connect(false);
                     })
                 }
