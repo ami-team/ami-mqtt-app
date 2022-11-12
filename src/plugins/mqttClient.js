@@ -190,34 +190,23 @@ class MQTTClient
     {
         localStorage.setItem('jwtToken', '');
 
-        return new Promise((resolve, reject) => {
+        if(this.#client.isConnected())
+        {
+            this.#client.signOut().finally(() => {
 
-            if(this.#client)
-            {
-                this.#client.signOut().finally(() => {
+                this.#connect(false).catch((e) => {
 
-                    this.#connect(false).then(() => {
-
-                        resolve();
-
-                    }).catch((e) => {
-
-                        reject(e);
-                    })
+                    console.log(e);
                 });
-            }
-            else
-            {
-                this.#connect(false).then(() => {
+            });
+        }
+        else
+        {
+            this.#connect(false).catch((e) => {
 
-                    resolve();
-
-                }).catch((e) => {
-
-                    reject(e);
-                })
-            }
-        });
+                console.log(e);
+            });
+        }
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
