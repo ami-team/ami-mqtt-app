@@ -28,6 +28,8 @@ class MQTTClient
         {
             this.#modal = new window.bootstrap.Modal(document.getElementById('C2BE0D9F_9779_84D1_EA11_023EBF2CA62F'));
 
+            alert(this.#modal);
+
             document.getElementById('DA646FB8_5E07_5DE0_1BE4_74A7893F8858').addEventListener('submit', (e) => {
 
                 e.preventDefault();
