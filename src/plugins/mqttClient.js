@@ -120,11 +120,11 @@ class MQTTClient
 
     #connect(updateListeners, onConnected = null, onMessageArrived = null, onConnectionLost = null)
     {
-        const retry = (resolve, reject) => {
+        return new Promise((resolve, reject) => {
 
             this.#getConfig().then(() => {
 
-                /*------------------------------------------------------------------------------------------------*/
+                /*----------------------------------------------------------------------------------------------------*/
 
                 if(!this.#client || this.#client.getEndpoint() !== this.getMQTTBrokerEndpoint())
                 {
@@ -134,7 +134,7 @@ class MQTTClient
                     });
                 }
 
-                /*------------------------------------------------------------------------------------------------*/
+                /*----------------------------------------------------------------------------------------------------*/
 
                 if(updateListeners)
                 {
@@ -143,7 +143,7 @@ class MQTTClient
                     this.#client.setOnConnectionLost(onConnectionLost || (() => {}));
                 }
 
-                /*------------------------------------------------------------------------------------------------*/
+                /*----------------------------------------------------------------------------------------------------*/
 
                 if(this.#client.isConnected())
                 {
@@ -161,11 +161,11 @@ class MQTTClient
 
                     }).catch(() => {
 
-                        localStorage.setItem('jwtToken', '');
-
                         setTimeout(() => {
 
-                            alert('ffff')
+                            localStorage.setItem('jwtToken', '');
+
+                            this.#connect(false);
 
                         }, 10);
                     });
@@ -177,11 +177,6 @@ class MQTTClient
 
                 reject(e);
             });
-        }
-
-        return new Promise((resolve, reject) => {
-
-            retry(resolve, reject);
         });
     }
 
