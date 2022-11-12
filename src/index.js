@@ -1,14 +1,14 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import AppComponent from '@/components/AppComponent';
+import AppComponent from './components/AppComponent.vue';
 
-import ButtonModal from '@/components/ButtonModal';
+import ButtonModal from './components/ButtonModal.vue';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import toast from '@/plugins/toast';
+import toast from './plugins/toast';
 
-import mqttClient from '@/plugins/mqttClient';
+import mqttClient from './plugins/mqttClient';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
