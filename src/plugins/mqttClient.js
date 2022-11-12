@@ -147,10 +147,7 @@ class MQTTClient
 
                 if(this.#client.isConnected())
                 {
-                    if(onConnected)
-                    {
-                        onConnected(this.#client);
-                    }
+                    if(onConnected) onConnected(this.#client);
 
                     resolve(this.#client);
                 }
