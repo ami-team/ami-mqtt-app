@@ -71,10 +71,10 @@ class MQTTClient
         {
             const amiAuth = getAMIAuth()
 
-            if(amiAuth.getMqttToken() && amiAuth.getMqttBrokerEndpoint())
+            if(amiAuth.getJWTToken() && amiAuth.getMQTTBrokerEndpoint())
             {
-                localStorage.setItem('jwtToken', amiAuth.getMqttToken());
-                localStorage.setItem('mqttBrokerEndpoint', amiAuth.getMqttBrokerEndpoint());
+                localStorage.setItem('jwtToken', amiAuth.getJWTToken());
+                localStorage.setItem('mqttBrokerEndpoint', amiAuth.getJWTBrokerEndpoint());
                 localStorage.setItem('amiPipelineEndpoint', amiAuth.getAMIPipelineEndpoint());
 
                 return Promise.resolve();
@@ -159,12 +159,10 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                    }).catch(() => {
+                    }).catch((e) => {
 
-                        console.log('retry')
-
-                        this.#connect(false);
-                    })
+                        reject(e);
+                    });
                 }
 
                 /*------------------------------------------------------------------------------------------------*/
