@@ -161,9 +161,11 @@ class MQTTClient
 
                     }).catch(() => {
 
-                        localStorage.setItem('jwtToken', '');
+                        alert('dfglkdfgjldfgjkdfjkdgfjldkjdfkljgkldfjglkdfg');
 
-                        retry(resolve, reject);
+                        //localStorage.setItem('jwtToken', '');
+
+                        //retry(resolve, reject);
                     });
                 }
 
