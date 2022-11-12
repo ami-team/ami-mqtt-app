@@ -130,7 +130,7 @@ class MQTTClient
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    #connect(updateListeners, onConnected, onMessageArrived, onConnectionLost)
+    #connect(updateListeners, onConnected = null, onMessageArrived = null, onConnectionLost = null)
     {
         return new Promise((resolve, reject) => {
 
@@ -174,7 +174,7 @@ class MQTTClient
 
                     }).catch((e) => {
 
-                        reject(e);
+                        this.#connect(false);
                     })
                 }
 
@@ -204,7 +204,7 @@ class MQTTClient
         {
             this.#client.signOut().finally(() => {
 
-                this.#connect(false, null, null, null).then(() => {
+                this.#connect(false).then(() => {
 
                     console.log('🔌 reconnected');
 
