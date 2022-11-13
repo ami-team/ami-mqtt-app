@@ -149,6 +149,8 @@ class MQTTClient
                 {
                     if(onConnected) onConnected(this.#client);
 
+                    console.log('🔌 connected');
+
                     resolve(this.#client);
                 }
                 else
@@ -159,19 +161,13 @@ class MQTTClient
 
                         resolve(this.#client);
 
-                    }).catch(() => {
+                    }).catch((e) => {
 
-                        setTimeout(() => {
-
-                            localStorage.setItem('jwtToken', '');
-
-                            this.#connect(false);
-
-                        }, 10);
+                        reject(e);
                     });
                 }
 
-                /*------------------------------------------------------------------------------------------------*/
+                /*----------------------------------------------------------------------------------------------------*/
 
             }).catch((e) => {
 
