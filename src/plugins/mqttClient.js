@@ -1,6 +1,8 @@
 // noinspection JSUnresolvedFunction, JSUnresolvedVariable,JSUnusedGlobalSymbols
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+import AMIMQTTClient from 'ami-mqtt-client/src/client';
+
 import {isInAMI, getAMIAuth} from '../utilities/AMI';
 
 import SignInModal from '../components/SignInModal.vue';
