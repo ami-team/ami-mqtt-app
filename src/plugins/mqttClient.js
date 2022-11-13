@@ -126,6 +126,10 @@ class MQTTClient
 
                 /*----------------------------------------------------------------------------------------------------*/
 
+                console.log(`will connect to ${this.getMQTTBrokerEndpoint()}`);
+
+                /*----------------------------------------------------------------------------------------------------*/
+
                 if(!this.#client || this.#client.getEndpoint() !== this.getMQTTBrokerEndpoint())
                 {
                     this.#client = new AMIMQTTClient(this.getMQTTBrokerEndpoint(), {
