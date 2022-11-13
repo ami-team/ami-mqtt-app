@@ -1,8 +1,6 @@
 // noinspection JSUnresolvedFunction, JSUnresolvedVariable,JSUnusedGlobalSymbols
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import AMIMQTTClient from 'ami-mqtt-client';
-
 import {isInAMI, getAMIAuth} from '../utilities/AMI';
 
 import SignInModal from '../components/SignInModal.vue';
@@ -126,7 +124,7 @@ class MQTTClient
 
                 /*----------------------------------------------------------------------------------------------------*/
 
-                console.log(`will connect to ${this.getMQTTBrokerEndpoint()}`);
+                console.log(`will connect to \`${this.getMQTTBrokerEndpoint()}\``);
 
                 /*----------------------------------------------------------------------------------------------------*/
 
