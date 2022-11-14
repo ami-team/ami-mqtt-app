@@ -10,7 +10,7 @@ import toast from './plugins/toast';
 
 import mqttClient from './plugins/mqttClient';
 
-import {isInAMI, getAMIWebApp, getAMIAuth, getAMI, isInAMI} from './utilities/AMI';
+import {isInAMI, getAMIWebApp, getAMIAuth, getAMI} from './utilities/AMI';
 
 import toPureJson from './utilities/toPureJson';
 
