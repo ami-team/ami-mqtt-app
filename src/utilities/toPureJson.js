@@ -2,7 +2,7 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 /**
- * Turn an AMI JSON array into a pure JSON object.
+ * Turn an AMI command into a pure JSON object.
  */
 
 export default function toPureJson(obj) {

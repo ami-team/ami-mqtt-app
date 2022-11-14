@@ -2,7 +2,7 @@
 
 export function isInAMI()
 {
-	return typeof(window.amiWebApp) !== 'undefined' && typeof(window.amiAuth) !== 'undefined';
+	return typeof(window.amiWebApp) !== 'undefined' && typeof(window.amiAuth) !== 'undefined' && typeof(window.ami) !== 'undefined';
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -17,6 +17,13 @@ export function getAMIWebApp()
 export function getAMIAuth()
 {
 	return window.amiAuth;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+export function getAMI()
+{
+	return window.ami;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/

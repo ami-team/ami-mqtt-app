@@ -10,6 +10,10 @@ import toast from './plugins/toast';
 
 import mqttClient from './plugins/mqttClient';
 
+import {getAMIWebApp, getAMIAuth, getAMI} from './utilities/AMI';
+
+import toPureJson from './utilities/toPureJson';
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 function setupApp(app)
@@ -51,6 +55,8 @@ function runApp(app, mountPoint)
 export {
     setupApp, runApp,
     AppComponent, ButtonModal,
+    getAMIWebApp, getAMIAuth, getAMI,
+    toPureJson,
 };
 
 /*--------------------------------------------------------------------------------------------------------------------*/
