@@ -10,7 +10,7 @@ import toast from './plugins/toast';
 
 import mqttClient from './plugins/mqttClient';
 
-import {getAMIWebApp, getAMIAuth, getAMI} from './utilities/AMI';
+import {isInAMI, getAMIWebApp, getAMIAuth, getAMI, isInAMI} from './utilities/AMI';
 
 import toPureJson from './utilities/toPureJson';
 
@@ -26,7 +26,7 @@ function setupApp(app)
 
 function runApp(app, mountPoint)
 {
-    if(typeof(window.amiWebApp) === 'undefined')
+    if(!isInAMI())
     {
         import('bootstrap/dist/css/bootstrap.css').then(() => {
 
@@ -43,7 +43,7 @@ function runApp(app, mountPoint)
     }
     else
     {
-        window.ami_mount = (mountPoint) => {
+        getAMI().mount = (mountPoint) => {
 
             app.mount(mountPoint);
         };
@@ -55,7 +55,7 @@ function runApp(app, mountPoint)
 export {
     setupApp, runApp,
     AppComponent, ButtonModal,
-    getAMIWebApp, getAMIAuth, getAMI,
+    isInAMI, getAMIWebApp, getAMIAuth, getAMI,
     toPureJson,
 };
 
