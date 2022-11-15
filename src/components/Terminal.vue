@@ -94,7 +94,7 @@ onMounted(() => {
 
         <div class="h-100" ref="divRef"></div>
 
-        <div class="position-absolute" style="top: 0.5rem; right: 1.0rem;">
+        <div class="d-flex position-absolute" style="top: 0.5rem; right: 1.0rem;">
 
             <slot></slot>
 
