@@ -4,6 +4,8 @@ import AppComponent from './components/AppComponent.vue';
 
 import ButtonModal from './components/ButtonModal.vue';
 
+import Terminal from './components/Terminal.vue';
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 import toast from './plugins/toast';
@@ -54,7 +56,7 @@ function runApp(app, mountPoint)
 
 export {
     setupApp, runApp,
-    AppComponent, ButtonModal,
+    AppComponent, ButtonModal, Terminal,
     isInAMI, getAMIWebApp, getAMIAuth, getAMI,
     toPureJson,
 };
