@@ -1,0 +1,77 @@
+<!-- *************************************************************************************************************** -->
+
+<script setup>
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+import {ref, onMounted} from 'vue';
+
+import {v4 as uuidV4} from 'uuid';
+
+import createTerm from '../utilities/createTerm';
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const props = defineProps({
+    active: {
+        type: Boolean,
+        default: false,
+    },
+    clean: {
+        type: Boolean,
+        default: false,
+    },
+    id: {
+        type: String,
+        default: uuidV4(),
+    }
+});
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const termRef = ref(null);
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const term = createTerm();
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+onMounted(() => {
+
+    document.querySelector(`button[data-bs-target="#${props.id}"]`).addEventListener('shown.bs.tab', () => term.fit());
+
+    term.open(termRef.value);
+
+    term.fit();
+});
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+</script>
+
+<!-- *************************************************************************************************************** -->
+
+<template>
+    <div :class="`tab-pane fade ${props.active ? 'show active' : 'xxxx xxxxxx'} h-100`" :id="props.id" role="tabpanel" tabindex="0">
+
+        <div class="h-100" ref="termRef"></div>
+
+        <div class="position-absolute" style="top: 0.5rem; right: 1.0rem;">
+
+            <slot></slot>
+
+            <button class="btn btn-outline-dark text-dark" v-if="props.clean">
+                <i class="bi bi-trash"></i>
+            </button>
+
+            <button class="btn btn-outline-danger" @click="term.clear();" v-else>
+                <i class="bi bi-trash"></i>
+            </button>
+
+        </div>
+
+    </div>
+</template>
+
+<!-- *************************************************************************************************************** -->
