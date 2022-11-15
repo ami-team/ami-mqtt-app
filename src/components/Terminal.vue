@@ -13,6 +13,10 @@ import createTerm from '../utilities/createTerm';
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 const props = defineProps({
+    id: {
+        type: String,
+        default: uuidV4(),
+    },
     active: {
         type: Boolean,
         default: false,
@@ -21,16 +25,17 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    id: {
+    prompt: {
         type: String,
-        default: uuidV4(),
+        default: '',
     },
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 const emit = defineEmits([
-    'isReady'
+    'is-ready',
+    'on-clear',
 ]);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -55,7 +60,7 @@ onMounted(() => {
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    emit('isReady', term);
+    emit('is-ready', term);
 
     /*----------------------------------------------------------------------------------------------------------------*/
 });
@@ -79,7 +84,7 @@ onMounted(() => {
                 <i class="bi bi-trash"></i>
             </button>
 
-            <button class="btn btn-outline-danger" @click="term.clear();" v-else>
+            <button class="btn btn-outline-danger" @click="$emit('on-clear', term)" v-else>
                 <i class="bi bi-trash"></i>
             </button>
 
