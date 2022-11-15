@@ -25,7 +25,7 @@ const props = defineProps({
         type: String,
         default: uuidV4(),
     },
-    ref: {
+    termRef: {
         type: Object,
         default: ref(null),
     }
@@ -37,11 +37,11 @@ const divRef = ref(null);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-alert(props.ref.value);
+alert(props.termRef.value);
 
-const term = props.ref.value = createTerm();
+const term = props.termRef.value = createTerm();
 
-alert(props.ref.value);
+alert(props.termRef.value);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
