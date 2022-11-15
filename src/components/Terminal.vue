@@ -17,7 +17,7 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    clean: {
+    clear: {
         type: Boolean,
         default: false,
     },
@@ -75,7 +75,7 @@ onMounted(() => {
 
             <slot></slot>
 
-            <button class="btn btn-outline-dark text-dark" v-if="props.clean">
+            <button class="btn btn-outline-dark text-dark" v-if="!props.clear">
                 <i class="bi bi-trash"></i>
             </button>
 
