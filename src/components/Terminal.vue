@@ -37,6 +37,8 @@ const divRef = ref(null);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+alert(props.ref.value);
+
 const term = props.ref.value = createTerm();
 
 alert(props.ref.value);
