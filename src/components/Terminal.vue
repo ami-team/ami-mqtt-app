@@ -24,16 +24,20 @@ const props = defineProps({
     id: {
         type: String,
         default: uuidV4(),
+    },
+    ref: {
+        type: Object,
+        default: ref(null),
     }
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-const termRef = ref(null);
+const divRef = ref(null);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-const term = createTerm();
+const term = props.ref.value = createTerm();
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -41,7 +45,7 @@ onMounted(() => {
 
     document.querySelector(`button[data-bs-target="#${props.id}"]`).addEventListener('shown.bs.tab', () => term.fit());
 
-    term.open(termRef.value);
+    term.open(divRef.value);
 
     term.fit();
 });
@@ -55,7 +59,7 @@ onMounted(() => {
 <template>
     <div :class="`tab-pane fade ${props.active ? 'show active' : 'xxxx xxxxxx'} h-100`" :id="props.id" role="tabpanel" tabindex="0">
 
-        <div class="h-100" ref="termRef"></div>
+        <div class="h-100" ref="divRef"></div>
 
         <div class="position-absolute" style="top: 0.5rem; right: 1.0rem;">
 
