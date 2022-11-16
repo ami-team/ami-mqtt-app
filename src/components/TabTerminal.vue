@@ -92,7 +92,7 @@ onMounted(() => {
 <!-- *************************************************************************************************************** -->
 
 <template>
-    <div :class="`tab-pane fade ${props.active ? 'show active' : 'xxxx xxxxxx'} h-100`" :id="props.id" role="tabpanel" tabindex="0">
+    <div :class="`tab-pane fade ${active ? 'show active' : 'xxxx xxxxxx'} h-100`" :id="props.id" role="tabpanel" tabindex="0">
 
         <div class="h-100" ref="divRef"></div>
 
@@ -100,7 +100,7 @@ onMounted(() => {
 
             <slot></slot>
 
-            <button class="btn btn-outline-dark text-dark" v-if="!props.clear">
+            <button class="btn btn-outline-dark text-dark" v-if="!clear">
                 <i class="bi bi-trash"></i>
             </button>
 

@@ -83,14 +83,14 @@ const computedButtonClass = computed(() => {
     if(props.buttonSize)
     {
         return props.buttonOutline ? `btn btn-${props.buttonSize} btn-outline-${props.buttonColor}`
-                                   : `btn btn-${props.buttonSize} btn-${props.buttonColor}`
-        ;
+            : `btn btn-${props.buttonSize} btn-${props.buttonColor}`
+            ;
     }
     else
     {
         return props.buttonOutline ? `btn btn-outline-${props.buttonColor}`
-                                   : `btn btn-${props.buttonColor}`
-        ;
+            : `btn btn-${props.buttonColor}`
+            ;
     }
 });
 
@@ -99,8 +99,8 @@ const computedButtonClass = computed(() => {
 const computedModalClass = computed(() => {
 
     return props.modalSize ? `modal modal-${props.modalSize} fade`
-                           : 'modal fade'
-    ;
+        : 'modal fade'
+        ;
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -131,15 +131,15 @@ onMounted(() => {
 <template>
     <div>
 
-        <span class="text-muted" v-if="props.link && props.buttonDisabled">
+        <span class="text-muted" v-if="link && buttonDisabled">
             <slot></slot>
         </span>
 
-        <a href="#" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" v-if="props.link && !props.buttonDisabled">
+        <a href="#" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" v-if="link && !buttonDisabled">
             <slot></slot>
         </a>
 
-        <button :class="`${computedButtonClass}`" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" :disabled="props.buttonDisabled" v-else>
+        <button :class="`${computedButtonClass}`" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" :disabled="buttonDisabled" v-else>
             <slot></slot>
         </button>
 
