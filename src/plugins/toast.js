@@ -101,14 +101,9 @@ export default {
 
                 let lines = getStack().split('\n');
 
-                for(const line of lines)
-                {
-                    console.log(line);
-                }
-
                 if(lines.length > 3)
                 {
-                    console.log(`${lines[3]}`); // eslint-disable-line no-console
+                    console.log(`${type}: ${lines[3]}`); // eslint-disable-line no-console
                 }
 
                 toastStore.add({
