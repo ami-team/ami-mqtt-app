@@ -131,15 +131,15 @@ onMounted(() => {
 <template>
     <div>
 
-        <span class="text-muted" v-if="props.link && props.disabled">
+        <span class="text-muted" v-if="props.link && props.buttonDisabled">
             <slot></slot>
         </span>
 
-        <a href="#" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" v-if="props.link && !props.disabled">
+        <a href="#" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" v-if="props.link && !props.buttonDisabled">
             <slot></slot>
         </a>
 
-        <button :class="`${computedButtonClass}`" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" :disabled="props.disabled" v-else>
+        <button :class="`${computedButtonClass}`" data-bs-toggle="modal" :data-bs-target="`#modal-${id}`" :disabled="props.buttonDisabled" v-else>
             <slot></slot>
         </button>
 
