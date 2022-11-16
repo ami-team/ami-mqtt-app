@@ -54,11 +54,11 @@ const props = defineProps({
         default: 'Are you sure you want to do this?',
     },
     /* events */
-    onConfirmText: {
+    confirmText: {
         type: String,
         default: 'Confirm',
     },
-    onCancelText: {
+    cancelText: {
         type: String,
         default: 'Cancel',
     },
@@ -67,8 +67,8 @@ const props = defineProps({
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 const emit = defineEmits([
-    'on-confirm',
-    'on-cancel',
+    'confirm',
+    'cancel',
 ]);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -83,14 +83,14 @@ const computedButtonClass = computed(() => {
     if(props.buttonSize)
     {
         return props.buttonOutline ? `btn btn-${props.buttonSize} btn-outline-${props.buttonColor}`
-            : `btn btn-${props.buttonSize} btn-${props.buttonColor}`
-            ;
+                                   : `btn btn-${props.buttonSize} btn-${props.buttonColor}`
+        ;
     }
     else
     {
         return props.buttonOutline ? `btn btn-outline-${props.buttonColor}`
-            : `btn btn-${props.buttonColor}`
-            ;
+                                   : `btn btn-${props.buttonColor}`
+        ;
     }
 });
 
@@ -99,8 +99,8 @@ const computedButtonClass = computed(() => {
 const computedModalClass = computed(() => {
 
     return props.modalSize ? `modal modal-${props.modalSize} fade`
-        : 'modal fade'
-        ;
+                           : 'modal fade'
+    ;
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -111,14 +111,14 @@ onMounted(() => {
 
         e.preventDefault();
 
-        emit('on-confirm', e);
+        emit('confirm', e);
     });
 
     cancelRef.value.addEventListener('click', (e) => {
 
         e.preventDefault();
 
-        emit('on-cancel', e);
+        emit('cancel', e);
     });
 });
 
@@ -159,10 +159,10 @@ onMounted(() => {
                         </form>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" ref="cancelRef">
-                                {{ onCancelText }}
+                                {{ cancelText }}
                             </button>
                             <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" :form="`form-${id}`">
-                                {{ onConfirmText }}
+                                {{ confirmText }}
                             </button>
                         </div>
                     </div>
