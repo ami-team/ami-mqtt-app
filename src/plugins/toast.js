@@ -15,27 +15,6 @@ const _amiWebApp = window.amiWebApp;
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-function getStack()
-{
-    try
-    {
-        _throwError();
-    }
-    catch(e1)
-    {
-        try
-        {
-            return e1.stack;
-        }
-        catch(e2)
-        {
-            return ((('')));
-        }
-    }
-}
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-
 export default {
 
     install(app) {
@@ -98,13 +77,6 @@ export default {
             const toastStore = useToastStore();
 
             app.provide('toast', (type, text) => {
-
-                let lines = getStack().split('\n');
-
-                if(lines.length > 3)
-                {
-                    console.log(`${type}: ${lines[3]}`); // eslint-disable-line no-console
-                }
 
                 toastStore.add({
                     id: uuidV4(),
