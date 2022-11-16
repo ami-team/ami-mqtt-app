@@ -101,6 +101,8 @@ export default {
 
                 let lines = getStack().split('\n');
 
+                console.log(lines);
+
                 if(lines.length > 3)
                 {
                     console.log(`${lines[3]}`); // eslint-disable-line no-console
