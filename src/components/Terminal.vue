@@ -27,7 +27,7 @@ const props = defineProps({
     },
     prompt: {
         type: String,
-        default: ''
+        default: '',
     },
 });
 
@@ -47,7 +47,7 @@ const term = createTerm();
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-const clearTerm = () => {
+term.prompt = () => {
 
     term.clear();
 
@@ -102,7 +102,7 @@ onMounted(() => {
                 <i class="bi bi-trash"></i>
             </button>
 
-            <button class="btn btn-outline-danger" @click="clearTerm" v-else>
+            <button class="btn btn-outline-danger" @click="term.prompt" v-else>
                 <i class="bi bi-trash"></i>
             </button>
 
