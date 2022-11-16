@@ -129,7 +129,7 @@ const computedModalClass = computed(() => {
                                 <i :class="`bi bi-${modalIcon}`"></i> {{ modalTitle }}
                             </h5>
                         </div>
-                        <form class="modal-body" :id="`form-${id}`" @submit="onConfirm()">
+                        <form class="modal-body" :id="`form-${id}`" @submit="(e) => { e.preventDefault(); onConfirm(e); }">
                             <slot name="textDescription">
                                 {{ modalText }}
                             </slot>
