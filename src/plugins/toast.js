@@ -101,7 +101,10 @@ export default {
 
                 let lines = getStack().split('\n');
 
-                console.log(lines);
+                for(const line of lines)
+                {
+                    console.log(line);
+                }
 
                 if(lines.length > 3)
                 {
