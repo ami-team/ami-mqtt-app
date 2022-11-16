@@ -1,6 +1,8 @@
 // noinspection JSUnresolvedFunction
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+import 'xterm/css/xterm.css';
+
 import {Terminal} from 'xterm';
 
 import {FitAddon} from 'xterm-addon-fit';
