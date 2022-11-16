@@ -3,9 +3,9 @@
 
 import 'xterm/css/xterm.css';
 
-import {Terminal} from 'xterm';
+import Terminal from 'xterm';
 
-import {FitAddon} from 'xterm-addon-fit';
+import FitAddon from 'xterm-addon-fit';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
