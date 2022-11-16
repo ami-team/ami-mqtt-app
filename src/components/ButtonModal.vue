@@ -4,7 +4,7 @@
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import {computed} from 'vue';
+import {computed, onMounted} from 'vue';
 
 import {v4 as uuidV4} from 'uuid';
 
@@ -58,19 +58,23 @@ const props = defineProps({
         type: String,
         default: 'Confirm',
     },
-    onConfirm: {
-        type: Function,
-        default: () => {},
-    },
     onCancelText: {
         type: String,
         default: 'Cancel',
     },
-    onCancel: {
-        type: Function,
-        default: () => {},
-    },
 });
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const emit = defineEmits([
+    'on-confirm',
+    'on-cancel',
+]);
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+const confirmRef = ref(null);
+const cancelRef = ref(null);
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -97,6 +101,25 @@ const computedModalClass = computed(() => {
     return props.modalSize ? `modal modal-${props.modalSize} fade`
                            : 'modal fade'
     ;
+});
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+onMounted(() => {
+
+    confirmRef.value.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        emit('on-confirm', e);
+    });
+
+    cancelRef.value.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        emit('on-cancel', e);
+    });
 });
 
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -129,13 +152,13 @@ const computedModalClass = computed(() => {
                                 <i :class="`bi bi-${modalIcon}`"></i> {{ modalTitle }}
                             </h5>
                         </div>
-                        <form class="modal-body" :id="`form-${id}`" @submit="(e) => { e.preventDefault(); onConfirm(e); }">
+                        <form class="modal-body" :id="`form-${id}`" ref="confirmRef">
                             <slot name="textDescription">
                                 {{ modalText }}
                             </slot>
                         </form>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" @onclick="onCancel()">
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" ref="cancelRef">
                                 {{ onCancelText }}
                             </button>
                             <button class="btn btn-primary" type="submit" data-bs-dismiss="modal" :form="`form-${id}`">
