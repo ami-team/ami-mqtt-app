@@ -1,4 +1,4 @@
-<!--suppress JSUnresolvedVariable -->
+<!--suppress JSUnresolvedVariable, HtmlUnknownTag -->
 <!-- *************************************************************************************************************** -->
 
 <script setup>

@@ -1,4 +1,4 @@
-// noinspection JSUnresolvedFunction, JSUnresolvedVariable,JSUnusedGlobalSymbols
+// noinspection JSUnusedGlobalSymbols,JSUnresolvedFunction,JSUnresolvedVariable
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 import AMIMQTTClient from 'ami-mqtt-client/src/client';
