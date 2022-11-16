@@ -3,28 +3,28 @@
 
 export function isInAMI()
 {
-	return typeof(window.amiWebApp) !== 'undefined' && typeof(window.amiAuth) !== 'undefined' && typeof(window.ami) !== 'undefined';
+    return typeof(window.amiWebApp) !== 'undefined' && typeof(window.amiAuth) !== 'undefined' && typeof(window.ami) !== 'undefined';
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 export function getAMIWebApp()
 {
-	return window.amiWebApp;
+    return window.amiWebApp;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 export function getAMIAuth()
 {
-	return window.amiAuth;
+    return window.amiAuth;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 export function getAMI()
 {
-	return window.ami;
+    return window.ami;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------*/

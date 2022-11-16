@@ -71,21 +71,21 @@ export default {
 
                 switch(type.toLowerCase())
                 {
-                    case 'error':
-                        _amiWebApp.error(body);
-                        break;
+                case 'error':
+                    _amiWebApp.error(body);
+                    break;
 
-                    case 'warning':
-                        _amiWebApp.warning(body);
-                        break;
+                case 'warning':
+                    _amiWebApp.warning(body);
+                    break;
 
-                    case 'success':
-                        _amiWebApp.success(body);
-                        break;
+                case 'success':
+                    _amiWebApp.success(body);
+                    break;
 
-                    default:
-                        _amiWebApp.info(body);
-                        break;
+                default:
+                    _amiWebApp.info(body);
+                    break;
                 }
             });
 
