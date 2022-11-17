@@ -4,9 +4,9 @@
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import {ref, onMounted} from 'vue';
-
 import {v4 as uuidV4} from 'uuid';
+
+import {ref, onMounted} from 'vue';
 
 import createTerm from '../utilities/createTerm';
 
