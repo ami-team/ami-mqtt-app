@@ -5,13 +5,11 @@ import {v4 as uuidV4} from 'uuid';
 
 import {requestPermission, isPermissionGranted, sendNotification} from '@tauri-apps/api/notification';
 
-import ToastContainer from '../components/ToastContainer.vue';
-
 import {useToastStore} from '../stores/toast';
 
-/*--------------------------------------------------------------------------------------------------------------------*/
+import {isInAMI, getAMIWebApp} from '../utilities/AMI';
 
-const _amiWebApp = window.amiWebApp;
+import ToastContainer from '../components/ToastContainer.vue';
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
@@ -40,7 +38,7 @@ export default {
 
             /*--------------------------------------------------------------------------------------------------------*/
         }
-        else if(typeof(_amiWebApp) !== 'undefined')
+        else if(isInAMI())
         {
             /*--------------------------------------------------------------------------------------------------------*/
             /* AMI                                                                                                    */
@@ -51,19 +49,19 @@ export default {
                 switch(type.toLowerCase())
                 {
                 case 'error':
-                    _amiWebApp.error(body);
+                    getAMIWebApp().error(body);
                     break;
 
                 case 'warning':
-                    _amiWebApp.warning(body);
+                    getAMIWebApp().warning(body);
                     break;
 
                 case 'success':
-                    _amiWebApp.success(body);
+                    getAMIWebApp().success(body);
                     break;
 
                 default:
-                    _amiWebApp.info(body);
+                    getAMIWebApp().info(body);
                     break;
                 }
             });
