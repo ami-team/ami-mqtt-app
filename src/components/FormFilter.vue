@@ -4,6 +4,15 @@
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+const props = defineProps({
+    placeholder: {
+        type: String,
+        default: 'Filter...',
+    },
+});
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
 defineEmits([
     'updateSearch'
 ]);
@@ -16,7 +25,7 @@ defineEmits([
 
 <template>
     <div class="inner-addon right-addon w-25">
-        <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" placeholder="Filter" @input="(e) => $emit('updateSearch', e.target.value)" />
+        <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" :placeholder="props.placeholder" @input="(e) => $emit('updateSearch', e.target.value)" />
     </div>
 </template>
 
