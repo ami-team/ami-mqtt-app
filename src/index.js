@@ -1,8 +1,10 @@
 /*--------------------------------------------------------------------------------------------------------------------*/
 
-import AppComponent from './components/AppComponent.vue';
+import AMIApp from './components/AMIApp.vue';
 
 import ButtonModal from './components/ButtonModal.vue';
+
+import FormFilter from './components/FormFilter.vue';
 
 import TabTerminal from './components/TabTerminal.vue';
 
@@ -56,7 +58,7 @@ function runApp(app, mountPoint)
 
 export {
     setupApp, runApp,
-    AppComponent, ButtonModal, TabTerminal,
+    AMIApp, ButtonModal, FormFilter, TabTerminal,
     isInAMI, getAMIWebApp, getAMIAuth, getAMI,
     toPureJson,
 };
