@@ -6,7 +6,7 @@
 
 import {storeToRefs} from 'pinia';
 
-import {useToastStore} from '../stores/toast';
+import useToastStore from '../stores/toast';
 
 import ToastContent from '../components/ToastContent.vue';
 

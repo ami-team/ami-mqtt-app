@@ -5,7 +5,7 @@ import {v4 as uuidV4} from 'uuid';
 
 import {requestPermission, isPermissionGranted, sendNotification} from '@tauri-apps/api/notification';
 
-import {useToastStore} from '../stores/toast';
+import useToastStore from '../stores/toast';
 
 import {isInAMI, getAMIWebApp} from '../utilities/AMI';
 
