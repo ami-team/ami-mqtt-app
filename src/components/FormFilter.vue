@@ -4,6 +4,11 @@
 
 /*--------------------------------------------------------------------------------------------------------------------*/
 
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
 const props = defineProps({
     placeholder: {
         type: String,
@@ -17,6 +22,8 @@ defineEmits([
     'updateSearch'
 ]);
 
+const search = ref(route.query.search || '');
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 </script>
@@ -24,9 +31,9 @@ defineEmits([
 <!-- *************************************************************************************************************** -->
 
 <template>
-    <div class="inner-addon right-addon w-25">
-        <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" :placeholder="props.placeholder" @input="(e) => $emit('updateSearch', e.target.value)" />
-    </div>
+  <div class="inner-addon right-addon w-25">
+    <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" :placeholder="props.placeholder" @v-model="search" @input="(e) => $emit('updateSearch', e.target.value)" />
+  </div>
 </template>
 
 <!-- *************************************************************************************************************** -->
