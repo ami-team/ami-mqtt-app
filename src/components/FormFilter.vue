@@ -31,9 +31,9 @@ const search = ref(route.query.search || '');
 <!-- *************************************************************************************************************** -->
 
 <template>
-  <div class="inner-addon right-addon w-25">
-    <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" :placeholder="props.placeholder" @v-model="search" @input="(e) => $emit('updateSearch', e.target.value)" />
-  </div>
+    <div class="inner-addon right-addon w-25">
+        <i class="bi bi-search"></i><input class="form-control rounded-4" type="text" :placeholder="props.placeholder" @v-model="search" @input="(e) => $emit('updateSearch', e.target.value)" />
+    </div>
 </template>
 
 <!-- *************************************************************************************************************** -->
