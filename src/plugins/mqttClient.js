@@ -74,7 +74,7 @@ class MQTTClient
             if(amiAuth.getJWTToken() && amiAuth.getMQTTBrokerEndpoint())
             {
                 localStorage.setItem('jwtToken', amiAuth.getJWTToken());
-                localStorage.setItem('mqttBrokerEndpoint', amiAuth.getJWTBrokerEndpoint());
+                localStorage.setItem('mqttBrokerEndpoint', amiAuth.getMQTTBrokerEndpoint());
                 localStorage.setItem('amiPipelineEndpoint', amiAuth.getAMIPipelineEndpoint());
 
                 return Promise.resolve();
